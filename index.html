@@ -7,22 +7,25 @@
 	display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh; /* Робимо блок .input на весь висоту вікна. */
+            justify-content: center;       
+	}
+	input{
+	text-align:center;
+	margin: 15px 0px;
 	}
 	</style>
 </head>
 <body>
 <div class="input">
     <label for="folderPath">Введите Id аккаунта:</label>
-    <input type="text" id="folderPath" placeholder="img" />
+    <input type="text" id="folderPath" placeholder="Вставьте Id" />
     <button onclick="displayImages()">Показать</button>
 	</div>
     <div id="photoGallery"></div>
 
     <script>
         async function displayImages() {
-            const repoURL = 'https://api.github.com/repos/faleekynan/accsource/id/contents/';
+            const repoURL = 'https://api.github.com/repos/faleekynan/accsource/contents/id/';
             const folderPath = document.getElementById('folderPath').value;
             const photoGallery = document.getElementById('photoGallery');
 
