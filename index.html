@@ -2,11 +2,22 @@
 <html>
 <head>
     <title>Поиск ресурсов</title>
+	<style>
+	.input{
+	display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Робимо блок .input на весь висоту вікна. */
+	}
+	</style>
 </head>
 <body>
+<div class="input">
     <label for="folderPath">Введите Id аккаунта:</label>
     <input type="text" id="folderPath" placeholder="img" />
     <button onclick="displayImages()">Показать</button>
+	</div>
     <div id="photoGallery"></div>
 
     <script>
