@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Поиск ресурсов</title>
+</head>
+<body>
+    <label for="folderPath">Введите Id аккаунта:</label>
+    <input type="text" id="folderPath" placeholder="img" />
+    <button onclick="displayImages()">Показать</button>
+    <div id="photoGallery"></div>
+
+    <script>
+        async function displayImages() {
+            const repoURL = 'https://api.github.com/repos/faleekynan/doc/contents/';
+            const folderPath = document.getElementById('folderPath').value;
+            const photoGallery = document.getElementById('photoGallery');
+
+            try {
+                const response = await fetch(repoURL + folderPath);
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    photoGallery.innerHTML = ''; // Очищаємо галерею перед відображенням нових фотографій.
+                    data.forEach(fileInfo => {
+                        if (fileInfo.type === 'file') {
+                            const img = document.createElement('img');
+                            img.src = fileInfo.download_url;
+                            photoGallery.appendChild(img);
+                        }
+                    });
+                } else {
+                    alert('Помилка: Не вдалося отримати список файлів.');
+                }
+            } catch (error) {
+                console.error('Помилка при отриманні файлів:', error);
+            }
+        }
+    </script>
+</body>
+</html>
